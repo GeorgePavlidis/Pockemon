@@ -1,12 +1,24 @@
 import Pokemon
+
 class Battle:
     def __init__(self, player1, player2, available_pokemons):
+        """
+        Initialize the Battle class with players and available Pokémon.
+
+        Args:
+        - player1 (str): Name of the first player.
+        - player2 (str): Name of the second player.
+        - available_pokemons (dict): Dictionary of available Pokémon.
+        """
         self.player1 = player1
         self.player2 = player2
         self.available_pokemons = available_pokemons
         self.pokemons = {}
 
     def choose_pokemons(self):
+        """
+        Allow players to choose their Pokémon teams.
+        """
         print("Player 1, choose two Pokémon:")
         self.pokemons[self.player1] = self.choose_pokemon_pair()
 
@@ -14,6 +26,9 @@ class Battle:
         self.pokemons[self.player2] = self.choose_pokemon_pair()
 
     def choose_pokemon_pair(self):
+        """
+        Helper method to choose a pair of Pokémon for a player.
+        """
         chosen_pokemons = []
         self.display_available_pokemons()
         for i in range(2):
@@ -28,11 +43,17 @@ class Battle:
         return chosen_pokemons
 
     def display_available_pokemons(self):
+        """
+        Display the list of available Pokémon.
+        """
         print("Available Pokémon:")
         for pokemon_name in self.available_pokemons:
             print(pokemon_name)
 
     def start_battle(self):
+        """
+        Start the battle between two players and their Pokémon teams.
+        """
         print("\nBattle begins!")
         print(f"\n{self.player1}'s turn to choose Pokémon:")
         pokemon1 = self.choose_pokemon(self.pokemons[self.player1])
@@ -65,19 +86,34 @@ class Battle:
             # Perform the round
             self.perform_round(player_second, pokemon_second, pokemon_first)
 
-
             # Check if any player has lost both Pokémon
             if self.player1_has_lost() or self.player2_has_lost():
                 break
 
     def determine_starting_player(self, pokemon1, pokemon2):
+        """
+        Determine which player goes first based on Pokémon speed.
+
+        Returns:
+        Tuple of (player_first, pokemon_first, player_second, pokemon_second)
+        """
         if pokemon1.speed > pokemon2.speed:
             print(f"{self.player1} plays first")
             return self.player1, pokemon1, self.player2, pokemon2
         else:
             print(f"{self.player2} plays first")
             return self.player2, pokemon2, self.player1, pokemon1
+
     def choose_pokemon(self, pokemon_team):
+        """
+        Allow a player to choose a Pokémon from their team.
+
+        Args:
+        - pokemon_team (list): List of Pokémon for the player.
+
+        Returns:
+        Chosen Pokémon.
+        """
         while True:
             print(f"Choose Pokémon from your team:")
             for i, pokemon in enumerate(pokemon_team):
@@ -90,6 +126,14 @@ class Battle:
                 print("Invalid choice. Try again.")
 
     def perform_round(self, player, chosen_pokemon, opponent_pokemon):
+        """
+        Perform a round of the battle.
+
+        Args:
+        - player (str): Name of the player.
+        - chosen_pokemon (Pokemon): Pokémon chosen for the round.
+        - opponent_pokemon (Pokemon): Opponent's Pokémon.
+        """
         print(f"\n{player}'s turn to perform a round.")
         print(f"Chosen Pokémon: {chosen_pokemon.name} (HP: {chosen_pokemon.health})")
 
@@ -103,21 +147,27 @@ class Battle:
         # Display battle status after the round
         self.display_battle_status()
 
-
-
     def choose_attack_type(self):
+        """
+        Allow a player to choose the type of attack.
+
+        Returns:
+        Chosen attack type ('simple' or 'special').
+        """
         while True:
             attack_type = input("Choose attack type simple or special (1 or 2): ").lower()
             if attack_type in ['1', '2']:
-                if attack_type == 1:
+                if attack_type == '1':
                     return "simple"
                 else:
                     return "special"
-
             else:
                 print("Invalid attack type. Try again.")
 
     def display_battle_status(self):
+        """
+        Display the current battle status.
+        """
         print("\n--- Battle Status ---")
         print(f"{self.player1}'s Pokémon:")
         for pokemon in self.pokemons[self.player1]:
@@ -127,7 +177,19 @@ class Battle:
             pokemon.display_info()
 
     def player1_has_lost(self):
+        """
+        Check if player 1 has lost both Pokémon.
+
+        Returns:
+        True if player 1 has lost, False otherwise.
+        """
         return all(pokemon.is_fainted for pokemon in self.pokemons[self.player1])
 
     def player2_has_lost(self):
+        """
+        Check if player 2 has lost both Pokémon.
+
+        Returns:
+        True if player 2 has lost, False otherwise.
+        """
         return all(pokemon.is_fainted for pokemon in self.pokemons[self.player2])
