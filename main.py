@@ -1,7 +1,7 @@
 import pandas as pd
 import seaborn as sns
 from matplotlib import pyplot as plt
-
+# we need to add requirements
 from Pokemon import Pokemon
 from Battle import Battle
 # Read the CSV file into a DataFrame
