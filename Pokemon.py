@@ -1,21 +1,38 @@
 """
-Create a Pokemon class
+Create a Pokemon Class:
 
-This class will have the following attributes:
--   name
--   level
--   type
--   health (will depend on level)
--   is_fainted
+Develop a Python class named Pokemon to simulate the characteristics and actions of a Pokemon in a battle scenario.
+Attributes:
 
-This class will have the following methods:
--   display_info: Display information about the Pokemon
--   take_damage:  Reduce the Pokemon's health by the given damage
--   heal: Heal the Pokemon by the given amount.
--   hit_opponent: Generate random damage and hit the opponent from 0 to max_power
+Define attributes for the Pokemon class, including name, types (type1 and type2), health points (hp), attack, defense, special attack (sp_atk), special defense (sp_def), speed, generation, and legendary status.
+Initialization:
 
-- Add code that will create two different Pokemon
-- Start a fight between them until one of them faints
+Implement an __init__ method to initialize the Pokemon object with the provided attributes.
+Set the initial health of the Pokemon to 10 times its level.
+Display Information:
+
+Create a method display_info to display information about the Pokemon, including its name, types, and health status.
+Damage Handling:
+
+Implement a method take_damage to reduce the Pokemon's health based on the provided damage.
+Consider defense in the damage calculation and print information about the attack.
+Healing:
+
+Develop a heal method to heal the Pokemon by a certain percentage of its current health.
+Attack Mechanism:
+
+Design a hit_opponent method to simulate the Pokemon attacking its opponent.
+Implement a basic attack (simple) that generates random damage within a range.
+Include a special attack (special) that considers type effectiveness based on a provided type chart and opponent's type.
+Special Attack Limitation:
+
+Introduce a mechanism to limit the use of special attacks in a single round.
+Battle Status:
+
+Maintain the Pokemon's battle status, including whether it is fainted or active.
+Randomization:
+
+Use randomization to introduce variability in damage calculations and attacks.
 
 Show who won !
 """
@@ -25,82 +42,33 @@ import random
 
 class Pokemon:
     types = None
-    def __init__(self, name, type1, type2, hp, attack, defense, sp_atk, sp_def, speed,
-                 generation, legendary):
+    def __init__(self, name, level, type):
         self.name = name
-        self.type1 = type1
-        self.type2 = type2
-        self.hp = hp
-        self.attack = attack
-        self.defense = defense
-        self.sp_atk = sp_atk
-        self.sp_def = sp_def
-        self.speed = speed
-        self.generation = generation
-        self.legendary = legendary
-        self.health = self.hp  # Assume health is 10 times the level
+        self.level = level
+        self.type = type
+        self.health = level * 10  # Assume health is 10 times the level
         self.is_fainted = False
-        self.has_used_special_attack = False
 
 
     def display_info(self):
         """Display information about the Pokemon."""
-        print(f"{self.name} - Type: {self.type1}/{self.type2}")
-        print(f"Health: {self.health}")
-        # print(f"Attack: {self.attack}")
-        # print(f"Special Attack: {self.sp_atk}")
-        # print(f"defense: {self.defense}")
-        # print(f"Special Defense: {self.sp_def}")
-        if self.is_fainted:
-            print("Status: Fainted")
-        else:
-            print("Status: Active")
+        pass
 
     def take_damage(self, damage):
         """Reduce the Pokemon's health by the given damage."""
-        defence = random.uniform(0, self.defense * 0.5) / 5
-        weaker = (damage - defence) / damage
-        print(f"The attack hit {self.name} with {(weaker * 100):.2f}% power (", end="")
-        damage = weaker * damage
-        print(f"{damage})")
-        if not self.is_fainted:
-            self.health -= damage
-            if self.health <= 0:
-                self.health = 0
-                self.is_fainted = True
-                print(f"{self.name} has fainted!")
+        pass
 
     def heal(self):
         """Heal the Pokemon by the given amount."""
-        if not self.is_fainted:
-            self.health += self.health * 0.1
-            print(f"{self.name} has been healed.")
+        pass
 
     def hit_opponent(self, attack_type, opponent_type1=None):
         """Generate random damage and hit the opponent."""
         if not self.is_fainted:
             if attack_type == "simple":
-                if self.has_used_special_attack:
-                    self.has_used_special_attack = False
-                attack_power = random.uniform(self.attack * 0.4, self.attack)
-                damage = int(attack_power / 5)
-                print(f"{self.name} uses simple attack and hits the opponent for {damage} damage.")
+               pass
             elif attack_type == "special":
-                if not type or not opponent_type1:
-                    print("You need to provide type chart and/or opponent's type")
-                    return None
-                if not self.has_used_special_attack:
-                    attack_power = random.uniform(self.sp_atk * 0.4, self.sp_atk)
-                    type_affected_attack_power = \
-                        attack_power * Pokemon.types[Pokemon.types.Attack == self.type1][opponent_type1].values[0]
-                    damage = int(type_affected_attack_power / 5)
-                    print(
-                        f"{self.name} uses special attack and hits the opponent for {damage} damage.")
-                    self.has_used_special_attack = True
-                else:
-                    print(f"{self.name} cannot use special attack again in this round.")
-                    return None
+                pass
 
-            return damage
         return None
 
