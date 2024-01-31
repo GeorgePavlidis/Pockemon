@@ -1,41 +1,54 @@
-"""
-Create a Pokemon Class:
+""""Create a Battle Class:
 
-Develop a Python class named Pokemon to simulate the characteristics and actions of a Pokemon in a battle scenario.
-Attributes:
-
-Define attributes for the Pokemon class, including name, types (type1 and type2), health points (hp), attack, defense, special attack (sp_atk), special defense (sp_def), speed, generation, and legendary status.
+Develop a Python class named Battle that simulates a battle scenario between two players, each with a team of Pokémon.
 Initialization:
 
-Implement an __init__ method to initialize the Pokemon object with the provided attributes.
-Set the initial health of the Pokemon to 10 times its level.
-Display Information:
+Implement an __init__ method to initialize the Battle object with two players, available Pokémon, and an empty dictionary to store chosen Pokémon teams.
+Choose Pokémon:
 
-Create a method display_info to display information about the Pokemon, including its name, types, and health status.
-Damage Handling:
+Create a method choose_pokemons to allow each player to choose two Pokémon from the available list.
+Choose Pokémon Pair:
 
-Implement a method take_damage to reduce the Pokemon's health based on the provided damage.
-Consider defense in the damage calculation and print information about the attack.
-Healing:
+Implement a choose_pokemon_pair method to facilitate the selection of two Pokémon by each player.
+Display Available Pokémon:
 
-Develop a heal method to heal the Pokemon by a certain percentage of its current health.
-Attack Mechanism:
+Develop a method display_available_pokemons to show the available Pokémon to choose from.
+Start Battle:
 
-Design a hit_opponent method to simulate the Pokemon attacking its opponent.
-Implement a basic attack (simple) that generates random damage within a range.
-Include a special attack (special) that considers type effectiveness based on a provided type chart and opponent's type.
-Special Attack Limitation:
+Create a start_battle method to initiate the battle between the two players.
+Players take turns choosing Pokémon and performing rounds until one player loses all Pokémon.
+Round Mechanics:
 
-Introduce a mechanism to limit the use of special attacks in a single round.
-Battle Status:
+Implement a perform_round method to simulate a round in the battle.
+Players choose their Pokémon, attack type, and perform attacks on the opponent.
+Determine Starting Player:
 
-Maintain the Pokemon's battle status, including whether it is fainted or active.
+Create a determine_starting_player method to decide which player and Pokémon start the battle based on speed.
+Choose Pokémon During Battle:
+
+Allow players to change their chosen Pokémon during the battle if desired.
+Player Has Lost Check:
+
+Implement methods player1_has_lost and player2_has_lost to check if a player has lost all Pokémon.
+Choose Pokémon Method:
+
+Develop a choose_pokemon method to facilitate choosing a Pokémon from the player's team during battle rounds.
+Attack Type Selection:
+
+Create a choose_attack_type method to allow players to select the type of attack (simple or special) during battle rounds.
+Battle Status Display:
+
+Implement a display_battle_status method to show the current status of Pokémon for both players after each round.
+Import Pokémon Class:
+
+Import the previously created Pokemon class to use it in the battle simulation.
 Randomization:
 
-Use randomization to introduce variability in damage calculations and attacks.
+Use user input and randomization to introduce variability in Pokémon selection and attack outcomes."""
 
-Show who won !
-"""
+
+
+
 
 
 
