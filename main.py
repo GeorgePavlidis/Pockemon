@@ -31,6 +31,19 @@ print('The shape of the dataframe is: ',df.shape)    #shape of the dataf
 
 
 
+plt.figure(figsize=(12,6))
+top_types=df['Type 1'].value_counts()[:10] #take the top 10 Types
+df1=df[df['Type 1'].isin(top_types.index)] #take the pokemons of the type with highest numbers, top 10
+sns.swarmplot(x='Type 1',y='Total',data=df1,hue='Legendary') # this plot shows the points belonging to individual pokemons
+# It is distributed by Type
+plt.axhline(df1['Total'].mean(),color='red',linestyle='dashed')
+plt.show()
+
+
+
+
+
+
 
 # Display the original DataFrame
 print("Original DataFrame:")
